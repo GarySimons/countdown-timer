@@ -7,6 +7,7 @@ function timer(seconds) {
     const now = Date.now();
     // how long to run it for (when it stops)
     const then = now + seconds * 1000;
+    displayTimeLeft(seconds);
     
     // set it to run every second
     countdown = setInterval(() => {
@@ -17,6 +18,11 @@ function timer(seconds) {
             clearInterval(countdown);
             return;
         }
-
+        // display it
+        displayTimeLeft(secondsLeft);
     }, 1000);
+}
+
+function displayTimeLeft(seconds) {
+    console.log(seconds);
 }
