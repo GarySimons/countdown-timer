@@ -1,6 +1,6 @@
 // global variable to store setInterval on screen
 let countdown; 
-
+const timerDisplay = document.querySelector('.display__time-left');
 
 function timer(seconds) {
     // get the current time to know when timer starts
@@ -28,5 +28,7 @@ function displayTimeLeft(seconds) {
     const minutes = Math.floor(seconds / 60);
     // How many seconds left seconds devided by 60
     const remainderSeconds = seconds % 60;
-    console.log(minutes, remainderSeconds);
+    // Displaying time - miutes and seconds remaiing
+    const display = `${minutes}:${remainderSeconds}`;
+    timerDisplay.textContent = display;
 }
