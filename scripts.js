@@ -29,6 +29,8 @@ function displayTimeLeft(seconds) {
     // How many seconds left seconds devided by 60
     const remainderSeconds = seconds % 60;
     // Displaying time - miutes and seconds remaiing
-    const display = `${minutes}:${remainderSeconds}`;
+    const display = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+    // displays the time in the title tab
+    document.title = display;
     timerDisplay.textContent = display;
 }
