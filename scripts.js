@@ -2,8 +2,13 @@
 let countdown; 
 const timerDisplay = document.querySelector('.display__time-left');
 const endTime = document.querySelector('.display__end-time');
+// Timer Buttons
+const buttons = document.querySelectorAll('[data-time]');
 
 function timer(seconds) {
+    // when new timer starts, this clears any existing timers 
+    clearInterval(countdown);
+    
     // get the current time to know when timer starts
     const now = Date.now();
     // how long to run it for (when it stops)
@@ -48,3 +53,13 @@ function displayEndTime(timestamp) {
     // shows when to be back (hour > 12 ? hour - 12 : hour) makes it a 12 hr clock
     endTime.textContent = `Be Back At ${hour > 12 ? hour - 12 : hour}:${minutes < 10 ? '0' : ''}${minutes}`;
 }
+
+// function to start the times from the boxes
+function startTimer() {
+    const seconds = parseInt(this.dataset.time);
+    // displays the countdown
+    timer(seconds);
+}
+
+// Event listener for click on buttons that then starts the timer countdown
+buttons.forEach(button => button.addEventListener('click', startTimer));
