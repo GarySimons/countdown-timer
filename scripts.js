@@ -1,6 +1,7 @@
 // global variable to store setInterval on screen
 let countdown; 
 const timerDisplay = document.querySelector('.display__time-left');
+const endTime = document.querySelector('.display__end-time');
 
 function timer(seconds) {
     // get the current time to know when timer starts
@@ -8,6 +9,8 @@ function timer(seconds) {
     // how long to run it for (when it stops)
     const then = now + seconds * 1000;
     displayTimeLeft(seconds);
+    // show the end time of a break. (then) is the display time
+    displayEndTime(then)
     
     // set it to run every second
     countdown = setInterval(() => {
@@ -28,9 +31,20 @@ function displayTimeLeft(seconds) {
     const minutes = Math.floor(seconds / 60);
     // How many seconds left seconds devided by 60
     const remainderSeconds = seconds % 60;
-    // Displaying time - miutes and seconds remaiing
+    // Displaying time - minutes and seconds remaiing
     const display = `${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
     // displays the time in the title tab
     document.title = display;
     timerDisplay.textContent = display;
+}
+
+// Show timer ending time
+function displayEndTime(timestamp) {
+    const end = new Date(timestamp);
+    // gets the hour
+    const hour = end.getHours();
+    // get the minutes
+    const minutes = end.getMinutes();
+    // shows when to be back (hour > 12 ? hour - 12 : hour) makes it a 12 hr clock
+    endTime.textContent = `Be Back At ${hour > 12 ? hour - 12 : hour}:${minutes < 10 ? '0' : ''}${minutes}`;
 }
