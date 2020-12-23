@@ -63,3 +63,14 @@ function startTimer() {
 
 // Event listener for click on buttons that then starts the timer countdown
 buttons.forEach(button => button.addEventListener('click', startTimer));
+// custom time form
+document.customForm.addEventListener('submit', function(e) {
+    // prevent page from refreshing (this) is the form
+    e.preventDefault();
+    const mins = this.minutes.value;
+    console.log(mins);
+    // take the mins and pass to timer (* multiply by 60 for seconds)
+    timer(mins * 60);
+    this.reset();
+    
+});
